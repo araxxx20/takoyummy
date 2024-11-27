@@ -4,17 +4,20 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
 }
-
 .sidebar {
     height: 100vh;
-    background-color: #FE2222;
+    background-color: #8b0000;
     position: fixed ;
     left: 0;
     top: 0;
     padding: 20px;
-    width: 250px;
+    width: 200px;
 }
 
+.logo img {
+    width: 100px;
+    border-radius: 50%;
+}
 .sidebar-header{
     display: flex;
     align-items: center;
@@ -66,7 +69,7 @@ body {
 .logout .nav-link2:hover{
     background-color: #ffffff;
     color: #FE2222;
-    border-radius: 10               px;
+    border-radius: 10px;
 }
 
 
