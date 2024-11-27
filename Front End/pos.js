@@ -57,7 +57,7 @@ changeButton.addEventListener('click', () => {
     if(clientChange < 0){
         sukli.innerHTML = "Change: Insufficient funds"
     }else{
-        sukli.innerHTML = `Change: ${clientChange}`
+        sukli.innerHTML = ` ${clientChange}`
 
         
     }

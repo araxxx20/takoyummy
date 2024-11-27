@@ -13,20 +13,14 @@ body {
     padding: 20px;
     width: 200px;
 }
-
-.logo img {
-    width: 100px;
-    border-radius: 50%;
-}
 .sidebar-header{
     display: flex;
     align-items: center;
 }
 
 .sidebar img {
-    display: block;
-    width: 70px;
-    left: 0px;
+    width: 100px;
+    border-radius: 50%;
 }
 
 .sidebar-title{

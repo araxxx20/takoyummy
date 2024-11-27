@@ -21,9 +21,8 @@ body {
 }
 
 .sidebar img {
-    display: block;
-    width: 70px;
-    left: 0px;
+    width: 100px;
+    border-radius: 50%;
 }
 
 .sidebar-title{
@@ -179,4 +178,44 @@ ion-icon {
 
 .action-icons i {
     margin: 0 5px;
+}
+.action-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.action-icons button {
+    margin: 0 5px; /* sa button para magkahiwalay */
+}
+.table td {
+    min-height: 40px;
+    padding: 10px;
+    vertical-align: middle; 
+}
+
+.status.in-stock {
+    color: green;
+}
+
+.status.out-of-stock {
+    color: red;
+}
+.table {
+    width: 100%;
+}
+
+.table td {
+    min-height: 40px;
+    min-width: 150px;
+    padding: 10px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.status.in-stock {
+    color: green;
+}
+
+.status.out-of-stock {
+    color: red;
 }
