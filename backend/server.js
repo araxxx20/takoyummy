@@ -1,11 +1,13 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const account = require('./models/userModel');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
+require('dotenv').config()
+
+const express = require('express')
+const mongoose = require('mongoose')
+const account = require('./models/userModel')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const authRoutes = require('./routes/auth')
+const userRoutes = require('./routes/users')
+const salesRoutes = require('./routes/sales')
 
 const app = express();
 
@@ -27,9 +29,9 @@ mongoose.connect(process.env.MONGO_URI)
     });
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-
+app.use('/api/auth', authRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/sales', salesRoutes)
 // Start the server
 const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => {
