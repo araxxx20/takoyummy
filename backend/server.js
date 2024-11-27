@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-
+const ingredientsRoutes = require('./routes/ingredientsRoutes');
 const app = express();
 
 // Middleware
@@ -29,6 +29,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/ingredients', ingredientsRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5050;
