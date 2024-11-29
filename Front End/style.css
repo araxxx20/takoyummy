@@ -1,129 +1,120 @@
-
-body {
+/* Basic Reset */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
 }
 
-.sidebar {
+/* Layout Styles */
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr;
     height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
     background-color: #8B0000;
-    position: fixed ;
-    left: 0;
-    top: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     padding: 20px;
+    height: 100%;
     width: 200px;
 }
 
-.sidebar-header{
+/* Navbar and Logo */
+.navbar-logo {
     display: flex;
     align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
-.sidebar img {
-    width: 100px;
+.navbar-logo img {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
-.sidebar-title{
-    font-size: 20px;
+.navbar-logo h1 {
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
-.sidebar .nav-link {
-    color: #ffffff;
+/* Menu */
+.menu {
+    width: 100%;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 15px 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: white;
+    color: #8B0000;
+}
+
+.menu-item i {
     font-size: 20px;
+}
+
+/* Logout Button */
+.logout {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 15px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 50px;
+}
+
+.logout:hover {
+    background-color: white;
+    color: #8B0000;
+}
+
+.logout i {
+    font-size: 20px;
+}
+
+/* Main Content Styles */
+.main-content {
+    background-color: #f0f0f0;
     padding: 20px;
-    border-radius: 40px;
 }
 
-.sidebar .nav {
-    margin-top: 140px;
-}
-
-.content .p-icon{
-    color: #333;
-}
-
-.logout{
-    margin-top: 190px;
-    text-align: center;
-    margin-right: 20.5px;
-}
-
-.log-out-icon{
-    font-size: 1.3em;
-    margin-right: 2px;
-    position: relative;
-    top: 3px;
-}
-
-.logout .nav-link2{
-    color: #ffffff;
-    font-size: 16px;
-}
-.logout .nav-link2:hover{
-    background-color: #ffffff;
-    color: #FE2222;
-    border-radius: 10               px;
-}
-
-
-.sidebar .nav-link:hover {
-    background-color: #ffffff;
-    color: #FE2222;
-    border-radius: 40px;
-}
-
-.sidebar h2 {
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar li {
-    margin-bottom: 10px;
-}
-
-.sidebar a {
-    display: block;
-    padding: 10px;
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.content {
-    margin-left: 270px;
+.card-body {
     padding: 20px;
-    margin-top: 20px;
-    align-items: center;
-}
-
-.user-info {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 10px; 
-}
-
-.user-name {
-    font-size: 1.2em;
-    margin-right: 10px;
-}
-
-ion-icon {
-    font-size: 1.2em;
-    position: relative;
-    top: 1.3px;
-}
-
-.profile-icon {
-    font-size: 2.2em;
 }
 
 .table {
@@ -138,84 +129,48 @@ ion-icon {
 }
 
 .table th {
+    background-color: #FE2222;
+    color: white;
+}
+
+.table tr:hover {
     background-color: #f0f0f0;
 }
 
-.in-stock {
-    color: green;
-}
+/* Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
 
-.out-of-stock {
-    color: red;
-}
+    .sidebar {
+        width: 100%;
+    }
 
-.fas.fa-minus {
-    color: red; 
-    font-size: 1.2em; 
+    .main-content {
+        margin-left: 0;
+    }
 }
-
-.fas.fa-plus {
-    color: green; 
-    font-size: 1.2em;
-}
-
-.card {
-    background-color: #fff;
-    border-radius: 5px;
+/* Receipt Style */
+.receipt {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    right: 0%
 }
 
-.card-body {
-    padding: 20px;
+.receipt h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-
-.action-icons {
-    display: flex;
-    justify-content: center;
+#orderReceipt {
+    list-style-type: none;
+    padding: 0;
 }
 
-.action-icons i {
-    margin: 0 5px;
-}
-.action-icons {
-    display: flex;
-    justify-content: center;
-}
-
-.action-icons button {
-    margin: 0 5px; /* sa button para magkahiwalay */
-}
-.table td {
-    min-height: 40px;
-    padding: 10px;
-    vertical-align: middle; 
-}
-
-.status.in-stock {
-    color: green;
-}
-
-.status.out-of-stock {
-    color: red;
-}
-.table {
-    width: 100%;
-}
-
-.table td {
-    min-height: 40px;
-    min-width: 150px;
-    padding: 10px;
-    vertical-align: middle;
-    white-space: nowrap;
-}
-
-.status.in-stock {
-    color: green;
-}
-
-.status.out-of-stock {
-    color: red;
+#orderReceipt li {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
 }
