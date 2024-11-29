@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -7,6 +8,9 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const ingredientsRoutes = require('./routes/ingredientsRoutes');
+const posRoutes = require('./routes/posRoutes');
+const salesRoutes = require('./routes/sales')
+
 const app = express();
 
 // Middleware
@@ -30,6 +34,8 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/ingredients', ingredientsRoutes);
+app.use('/api/pos', posRoutes);
+app.use('/api/sales', salesRoutes)
 
 // Start the server
 const PORT = process.env.PORT || 5050;
