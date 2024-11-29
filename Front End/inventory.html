@@ -1,25 +1,26 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tako-Yummy Hub</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="salestyle.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
           <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
             <div class="position-sticky pt-3">
-                <div class="sidebar-header">
-                    <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/252959231_108543311633958_7288635393007285722_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=hedb8Ea_sSoQ7kNvgHwVt4C&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=AC2ej0BWj_2LBrgpxT0gYoa&oh=00_AYCLWLQNTbLTekYWX0n-rNGEccQ63u6FUXJYwm1acR2Yjg&oe=67426AF1" alt="Sidebar Image"> <!-- Replace this with your image URL -->
-                    <span class="sidebar-title">Tako-Yummy <br>Hub</span>
+                <div class="logo">
+                    <img src="../Front End/assets/takoyaki.jpeg" alt="Takoyummy Logo">
                 </div>
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <a class="nav-link active" href="dashboard.html"><ion-icon class="home" name="home-outline"></ion-icon>
-                      Dashboard
+                    <a class="nav-link active" href="pos.html"><ion-icon class="home" name="home-outline"></ion-icon>
+                      POS
                     </a>
                   </li>
                   <li class="nav-item">
@@ -32,9 +33,14 @@
                       Inventory
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="finalstesting.html"><ion-icon class="inventory" name="clipboard-outline"></ion-icon>
+                      Logout
+                    </a>
+                  </li>
                 </ul>
                 <div class="logout">
-                    <a class="nav-link2" href=""><ion-icon class="log-out-icon" name="log-out-outline"></ion-icon>Logout</a>
+                    <a class="nav-link2" href="finalstesting.html"><ion-icon class="log-out-icon" name="log-out-outline"></ion-icon>Logout</a>
                 </div>
               </div>
             </nav>
@@ -50,54 +56,34 @@
                     <div class="card-body ">
                         <table class="table table-bordered ">
                             <thead>
-                                <thead>
-                                    <tr>
-                                        <th class="text-left" style="background-color: #FE2222;">Ingredients</th>
-                                        <th class="text-left" style="background-color: #FE2222;">Status</th>
-                                        <th class="text-center" style="background-color: #FE2222;">Actions</th>
-                                    </tr>
-                                </thead>
-                                
+                                <tr>
+                                    <th class="text-left" style="background-color: #FE2222;">Ingredients</th>
+                                    <th class="text-left" style="background-color: #FE2222;">Status</th>
+                                    <th class="text-center" style="background-color: #FE2222;">Quantity</th>
+                                    <th class="text-center" style="background-color: #FE2222;">Actions</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Takoyaki Flavour</td>
-                                    <td class="in-stock">In-stock</td>
+                                    <td class="status in-stock">In-stock</td>
+                                    <td class="text-center">
+                                        <span class="quantity">10</span>
+                                    </td>
                                     <td class="text-center action-icons">
-                                        <i class="fas fa-minus minus-icon ">-</i>
-                                        <i class="fas fa-plus plus-icon">+</i>
+                                        <button class="btn btn-danger" onclick="decrementQuantity(this)">-</button>
+                                        <button class="btn btn-success" onclick="incrementQuantity(this)">+</button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Octopus</td>
-                                    <td class="out-of-stock">Out of stock</td>
-                                    <td class="text-center action-icons">
-                                        <i class="fas fa-minus minus-icon">-</i>
-                                        <i class="fas fa-plus plus-icon">+</i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Takoyaki Sauce</td>
-                                    <td class="in-stock">In-stock</td>
-                                    <td class="text-center action-icons">
-                                        <i class="fas fa-minus minus-icon">-</i>
-                                        <i class="fas fa-plus plus-icon">+</i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Bonito Flakes</td>
-                                    <td class="out-of-stock">Out of stock</td>
-                                    <td class="text-center action-icons">
-                                        <i class="fas fa-minus minus-icon">-</i>
-                                        <i class="fas fa-plus plus-icon">+</i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Takoyaki Seasoning</td>
-                                    <td class="out-of-stock">Out of stock</td>
-                                    <td class="text-center action-icons">
-                                        <i class="fas fa-minus minus-icon">-</i>
-                                        <i class="fas fa-plus plus-icon">+</i>
+                                    <td class="status in-stock">In-stock</td>
+                                    <td class="text-center">
+                                        <span class="quantity">5</span>
+ </td>
+                                    <td class=" text-center action-icons">
+                                        <button class="btn btn-danger" onclick="decrementQuantity(this)">-</button>
+                                        <button class="btn btn-success" onclick="incrementQuantity(this)">+</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -107,7 +93,7 @@
             </div>
         </div>
     </div>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="inv.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
