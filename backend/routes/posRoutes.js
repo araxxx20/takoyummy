@@ -26,6 +26,17 @@ router.post('/calculate', async (req, res) => {
         });
         await newOrder.save();
 
+         // Save each item as a sale in the Sale model
+         for (const item of items) {
+            const newSale = new Sale({
+                product: item.name,
+                quantity: item.quantity,
+                price: item.price,
+                total: item.price * item.quantity,
+            });
+            await newSale.save();
+        }
+
         res.status(201).json({
             message: 'Order processed successfully!',
             order: newOrder,
