@@ -1,34 +1,39 @@
 document.addEventListener("DOMContentLoaded", function () {
     const salesTableBody = document.getElementById("salesTableBody");
 
-    fetch("http://localhost:5050/api/v1/sales/")
+    // Fetch sales data from the backend
+    fetch("http://localhost:5050/api/v1/sales")
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error('Failed to fetch sales data');
             }
             return response.json();
         })
         .then(data => {
+            console.log(data);
+            // Check if data is empty
             if (data.length === 0) {
-                salesTableBody.innerHTML = "<tr><td colspan='5'>No sales data available</td></tr>";
-            } else {
-                data.forEach(sales => {
+                salesTableBody.innerHTML = '<tr><td colspan="5" class="text-center">No sales data available</td></tr>';
+                return;
+            }
+
+            data.forEach(sale => {
+                sale.items.forEach(item => {
                     const row = `
                         <tr>
-                            <td>${new Date(sales.date).toLocaleDateString()}</td>
-                            <td>${sales.product}</td>
-                            <td>₱${sales.price.toFixed(2)}</td>
-                            <td>${sales.quantity}</td>
-                            <td>₱${sales.total.toFixed(2)}</td>
+                            <td>${new Date(sale.createdAt).toLocaleDateString()}</td>
+                            <td>${item.product}</td>
+                            <td>₱${item.price.toFixed(2)}</td>
+                            <td>${item.quantity}</td>
+                            <td>₱${(item.price * item.quantity).toFixed(2)}</td>
                         </tr>
                     `;
                     salesTableBody.innerHTML += row;
                 });
-            }
+            });
         })
-        .catch(err => {
-            console.error("Failed to fetch sales data:", err);
-            salesTableBody.innerHTML = "<tr><td colspan='5'>Failed to load sales data</td></tr>";
+        .catch(error => {
+            console.error("Error fetching sales data:", error);
+            salesTableBody.innerHTML = '<tr><td colspan="5" class="text-center">Failed to load sales data</td></tr>';
         });
 });
-

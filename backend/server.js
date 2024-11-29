@@ -19,8 +19,9 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://127.0.0.1:5050',  // Allow only your frontend's domain
-    methods: ['GET', 'POST'],         // Allow only GET and POST methods
+    origin: 'http://127.0.0.1:5501',  
+    methods: ['GET', 'POST'],  
+    allowedHeaders: ['Content-Type'],        
     credentials: true    
 }))
 
