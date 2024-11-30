@@ -1,50 +1,39 @@
-/* Basic Reset */
-* {
+/* General Reset */
+body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: Arial, sans-serif;
-}
-
-/* Layout Styles */
-.container {
-    display: grid;
-    grid-template-columns: 200px 1fr;
+    background-color: #f9f9f9;
+    overflow-x: hidden; /* Prevent horizontal scroll due to fixed positioning */
+    display: flex;
+    flex-direction: column;
     height: 100vh;
 }
 
-/* Sidebar Styles */
-.sidebar {
+/* Navbar */
+.navbar {
     background-color: #8B0000;
     color: white;
+    padding: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 20px;
-    height: 100%;
-    background-color: #8B0000;
-    position: fixed ;
-    left: 0;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
     top: 0;
-    padding: 20px;
-    width: 200px;
+    width: 100%;
+    height: 70px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-/* Navbar and Logo */
 .navbar-logo {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 30px;
 }
 
 .navbar-logo img {
-    width: 50px;
-    height: 50px;
-}
-
-.sidebar img {
-    width: 100px;
+    width: 50px;  /* Adjusted logo width */
+    height: 50px;  /* Adjusted logo height */
     border-radius: 50%;
 }
 
@@ -53,36 +42,30 @@
     font-weight: bold;
 }
 
-/* Menu */
+/* Sidebar */
+.sidebar {
+    background-color: #8B0000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 50px; /* Make space for navbar */
+}
+
 .menu {
+    margin-top: 10px;
     width: 100%;
 }
 
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 20px;
-    color: white;
-    font-size: 18px;
-    text-decoration: none;
-    padding: 15px 10px;
-    border-radius: 5px;
-    margin-top: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.menu-item:hover {
-    background-color: white;
-    color: #8B0000;
-}
-
-.menu-item i {
-    font-size: 20px;
-}
-
-/* Logout Button */
-.logout {
     gap: 15px;
+    color: white;
     font-size: 18px;
     text-decoration: none;
     padding: 15px 10px;
@@ -91,39 +74,54 @@
     margin-top: 50px;
 }
 
-.nav-link2 {
-    margin-top: 68%;
-    text-align: center;
-}
-
-.logout:hover {
+.menu-item:hover {
+    background-color: white;
     color: #8B0000;
 }
 
-.logout i {
-    font-size: 20px;
+.menu-item.active {
+    background-color: white;
+    color: #8B0000;
 }
 
-/* Main Content Styles */
+.logout {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 15px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 50px;
+}
+    .logout:hover {
+        background-color: white;
+        color: #8B0000;
+}
+
+/* Main Content */
 .main-content {
-    background-color: #f0f0f0;
-    padding: 20px;
-}
-
-.page-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+    margin-left: 200px; /* Make room for sidebar */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 30px; /* Adjust to ensure space for navbar */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
 .card {
-    background-color: white;
+    width: 100%;
+    margin-top: 10px; /* Adjust top margin */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-body {
-    padding: 20px;
+    overflow: hidden;
+    background-color: white;
+    object-fit: contain;
 }
 
 .table {
@@ -132,9 +130,9 @@
 }
 
 .table th, .table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
 }
 
 .table th {
@@ -142,17 +140,54 @@
     color: white;
 }
 
-.table tr:hover {
-    background-color: #f0f0f0;
+.table td {
+    background-color: #fff;
 }
 
 /* Responsiveness */
 @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
+    .sidebar {
+        position: static; /* Make sidebar stack in mobile */
+        width: 100%;
+        height: auto;
     }
 
+    .main-content {
+        margin-left: 0; /* Full width for main content */
+    }
+}
+
+/* Inventory Specific */
+.status {
+    font-weight: bold;
+}
+
+.status.in-stock {
+    color: green;
+}
+
+.status.out-of-stock {
+    color: red;
+}
+
+.quantity {
+    font-weight: bold;
+}
+
+.action-icons button {
+    margin: 5px;
+    padding: 5px 15px;
+    font-size: 16px;
+}
+
+.action-icons button:hover {
+    cursor: pointer;
+}
+
+/* Media Query for Sidebar (Mobile) */
+@media (max-width: 768px) {
     .sidebar {
+        position: static;
         width: 100%;
     }
 
@@ -160,77 +195,3 @@
         margin-left: 0;
     }
 }
-/* Receipt Style */
-.receipt {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.receipt h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-#orderReceipt {
-    list-style-type: none;
-    padding: 0;
-}
-
-#orderReceipt li {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-}
-.action-icons {
-    display: flex;
-    justify-content: center;
-}
-
-.action-icons button {
-    margin: 0 5px; /* sa button para magkahiwalay */
-}
-.table td {
-    min-height: 40px;
-    padding: 10px;
-    vertical-align: middle; 
-}
-
-.status.in-stock {
-    color: green;
-}
-
-.status.out-of-stock {
-    color: red;
-}
-.table {
-    width: 100%;
-}
-
-.table td {
-    min-height: 40px;
-    min-width: 150px;
-    padding: 10px;
-    vertical-align: middle;
-    white-space: nowrap;
-}
-
-.status.in-stock {
-    color: green;
-}
-
-.status.out-of-stock {
-    color: red;
-}
-
-.home {
-    font-size: 20px;
-}
-.sale {
-    font-size: 20px;
-}
-.inventory {
-    font-size: 20px;
-}
-

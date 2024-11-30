@@ -18,17 +18,17 @@
         <aside class="sidebar">
             <nav class="menu">
                 <a href="#pos.html" class="menu-item">
-                    <i class="bi bi-cart3">POS</i> 
+                    <i class="bi bi-cart3"></i> POS
                 </a>
                 <a href="sales.html" class="menu-item">
-                    <i class="bi bi-graph-up-arrow">Sales</i> 
+                    <i class="bi bi-graph-up-arrow"></i> Sales
                 </a>
                 <a href="inventory.html" class="menu-item">
-                    <i class="bi bi-box-seam">Inventory</i> 
+                    <i class="bi bi-box-seam"></i> Inventory
                 </a>
             </nav>
             <a href="finalstesting.html" class="logout">
-                <i class="bi bi-box-arrow-right">Logout</i> 
+                <i class="bi bi-box-arrow-right"></i> Logout
             </a>
         </aside>
         
@@ -117,24 +117,18 @@
         </main>
         <aside class="order-summary">
             <h2>Order Summary</h2>
-            <div class="order-item">
-                <div class="item-details">Total Price<br>Takoyaki</div>
-                <div class="board-quantity">0</div>
-                <div class="item-price">₱<span class="item-price2">0</span></div>
+            <!-- Dynamically injected order items -->
+            <div class="total">Total: ₱0.00</div>
+            <div class="payment-section">
+                <h3>Payment</h3>
+                <input class="input1" type="text" placeholder="Enter Payment">
+                <div class="keypad">
+                    <button id="calculateChange" class="calculateChange">Calculate Change</button>
+                </div>
+                <div class="change">Change: </div>
             </div>
             
-        
-
-        <div class="payment-section">
-            <h3>Payment</h3>
-            <input class="input1" type="text">
-            <div class="keypad">
-             
-                <button id="calculateChange" class="calculateChange">Calculate Change</button>
-            </div>
-            <div class="change">Change: </div>
-        </div>
-    </aside>
+        </aside>        
     </div>
 
     <script src="pos.js"></script>
