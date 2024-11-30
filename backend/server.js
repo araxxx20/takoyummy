@@ -41,7 +41,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/ingredients', ingredientsRoutes)
-app.use('/api/v1/pos', posRoutes)
+app.use('/api/pos', posRoutes)
 app.use('/api/v1/sales', salesRoutes)
 
 // Start the server
