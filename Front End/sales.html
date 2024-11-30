@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +6,7 @@
     <title>Tako-Yummy Hub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <link rel="stylesheet" href="salestyle.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="salestyle.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="salestyle.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="salestyle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
@@ -16,8 +14,7 @@
             <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky pt-3">
                     <div class="logo">
-                        <img src="../Front End/assets/takoyaki.jpeg" alt="Tako">
-                        <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/252959231_108543311633958_7288635393007285722_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHWCyAAgLKCvwHHVjPfY4S0OSG2GqL5XHU5IbYaovlcdapluE4bpIcDYl74E6_8goN5V87vvsLcauU93eShZfy7&_nc_ohc=1XtQPcwmD9UQ7kNvgHPsUT5&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=AKEg67qT4afWGXhbQ8BphGO&oh=00_AYDncpIdSErNDO1lVqaP0YQfoDKwUN9-FiGBnoO0HjE0LQ&oe=6747B0F1" alt="Sidebar Image">
+                        <img src="/Front End/assets/takoyaki.jpeg" alt="Sidebar Image">
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -47,47 +44,16 @@
                 
                 <div class="date-filter mb-3">
                     <label for="filterDate">Select Date:</label>
-                    <input type="date" id="filterDate" class="form-control">
+                    <input type="date" id="filterDate" class="form-control" style="width: 13%;"  placeholder="filter">
                 </div>
 
                 <div class="card">
                     <div class="card-body">
                         <table class="table table-bordered">
-                            <thead>
+                            <thead id="salesTable">
                                 <tr>
                                     <th class="text-center" style="background-color: #FE2222;">Date</th>
                                     <th class="text-center" style="background-color: #FE2222;">Item</th>
-                                    <th class="text-center" style="background-color: #FE2222;">Unit Price</th>
-                                    <th class="text-center" style="background-color: #FE2222;">Quantity Sold</th>
-                                    <th class="text-center" style="background-color: #FE2222;">Total Sales</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2023-01-01</td>
-                                    <td>Takoyaki Flavour</td>
-                                    <td>₱5.00</td>
-                                    <td>10</td>
-                                    <td>₱50.00</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-01-02</td>
-                                    <td>Octopus</td>
-                                    <td>₱8.00</td>
-                                    <td>0</td>
-                                    <td>₱0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>2023-01-02</td>
-                                    <td>Octopus</td>
-                                    <td>₱8.00</td>
-                                    <td>0</td>
-                                    <td>₱0.00</td>
-                                </tr>
-                            </tbody>
-                                <tr>
-                                    <th class="text-center" style="background-color: #FE2222;">Date</th>
-                                    <th clas     s="text-center" style="background-color: #FE2222;">Item</th>
                                     <th class="text-center" style="background-color: #FE2222;">Unit Price</th>
                                     <th class="text-center" style="background-color: #FE2222;">Quantity Sold</th>
                                     <th class="text-center" style="background-color: #FE2222;">Total Sales</th>

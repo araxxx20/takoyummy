@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let filteredData = [];
     let currentPage = 1;
-    const rowsPerPage = 4;  // Change to 15 rows per page
+    const rowsPerPage = 4;  // Change to 4 rows per page
 
+    // Function to render the table
     const renderTable = (data, page = 1) => {
         salesTableBody.innerHTML = ""; // Clear the table
         const start = (page - 1) * rowsPerPage;
@@ -18,24 +19,31 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Render each sale item
         paginatedData.forEach(sale => {
-            sale.items.forEach(item => {
-                const row = `
-                    <tr>
-                        <td>${new Date(sale.createdAt).toLocaleDateString()}</td>
-                        <td>${item.name}</td>
-                        <td>₱${item.price.toFixed(2)}</td>
-                        <td>${item.quantity}</td>
-                        <td>₱${(item.price * item.quantity).toFixed(2)}</td>
-                    </tr>
-                `;
-                salesTableBody.innerHTML += row;
-            });
+            // Check if sale has valid properties like product, quantity, price
+            if (!sale.product || !sale.quantity || !sale.price) {
+                console.error("Invalid sale data:", sale);
+                return;
+            }
+
+            const row = `
+                <tr>
+                    <td>${new Date(sale.createdAt).toLocaleDateString()}</td>
+                    <td>${sale.product}</td>
+                    <td>₱${sale.price.toFixed(2)}</td>
+                    <td>${sale.quantity}</td>
+                    <td>₱${(sale.price * sale.quantity).toFixed(2)}</td>
+                </tr>
+            `;
+            salesTableBody.innerHTML += row;
         });
 
+        // Render pagination controls
         renderPagination(data.length);
     };
 
+    // Function to render pagination
     const renderPagination = (totalRows) => {
         paginationControls.innerHTML = "";
         const totalPages = Math.ceil(totalRows / rowsPerPage);
@@ -52,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         paginationControls.appendChild(prevButton);
 
-
         const nextButton = document.createElement("button");
         nextButton.textContent = "Next";
         nextButton.className = "btn btn-secondary btn-sm mx-1";
@@ -66,42 +73,46 @@ document.addEventListener("DOMContentLoaded", function () {
         paginationControls.appendChild(nextButton);
     };
 
+    // Fetch sales data from the server
     fetch("http://localhost:5050/api/v1/sales/")
         .then(response => {
             if (!response.ok) {
-                throw new Error("Failed to fetch sales data");
+                throw new Error("Failed to fetch sales data - Network response was not ok.");
             }
             return response.json();
         })
         .then(data => {
+            console.log("Fetched sales data:", data); // Inspect the structure of the response
+            if (!Array.isArray(data)) {
+                throw new Error("Sales data is not in the expected array format.");
+            }
+
             if (data.length === 0) {
                 salesTableBody.innerHTML = '<tr><td colspan="5" class="text-center">No sales data available</td></tr>';
                 return;
             }
 
             filteredData = data; // Default to all data initially
-            renderTable(filteredData); 
+            renderTable(filteredData);
 
-            // Filter sales by date 
-            filterDateInput.addEventListener("keypress", function (e) {
-                if (e.key === "Enter") {
-                    const selectedDate = new Date(filterDateInput.value);
-                    filteredData = data.filter(sale => {
-                        const saleDate = new Date(sale.createdAt);
-                        return (
-                            saleDate.getFullYear() === selectedDate.getFullYear() &&
-                            saleDate.getMonth() === selectedDate.getMonth() &&
-                            saleDate.getDate() === selectedDate.getDate()
-                        );
-                    });
+            // Automatically filter sales by date as the user types
+            filterDateInput.addEventListener("input", function () {
+                const selectedDate = new Date(filterDateInput.value);
+                filteredData = data.filter(sale => {
+                    const saleDate = new Date(sale.createdAt);
+                    return (
+                        saleDate.getFullYear() === selectedDate.getFullYear() &&
+                        saleDate.getMonth() === selectedDate.getMonth() &&
+                        saleDate.getDate() === selectedDate.getDate()
+                    );
+                });
 
-                    currentPage = 1; // Reset to the first page
-                    renderTable(filteredData, currentPage);
-                }
+                currentPage = 1; // Reset to the first page
+                renderTable(filteredData, currentPage);
             });
         })
         .catch(error => {
             console.error("Error fetching sales data:", error);
-            salesTableBody.innerHTML = '<tr><td colspan="5" class="text-center">Failed to load sales data</td></tr>';
+            salesTableBody.innerHTML = `<tr><td colspan="5" class="text-center">Failed to load sales data: ${error.message}</td></tr>`;
         });
 });

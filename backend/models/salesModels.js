@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
 const saleSchema = new mongoose.Schema({
-    product: String,    // Product name
-    quantity: Number,   // Quantity sold
-    price: Number,      // Price per unit
-    total: Number,      // Total sale amount
-    date: { type: Date, default: Date.now } // Date of sale
+    product: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    price: { type: Number, required: true },
+    total: { type: Number, required: true },
+    createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Sale', saleSchema);
+const Sale = mongoose.model('Sale', saleSchema);
+
+module.exports = Sale;

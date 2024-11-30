@@ -1,5 +1,5 @@
 const express = require('express');
-const Sale = require('../models/orderModel');  // Correct import of the Sale model
+const Sale = require('../models/salesModels');  // Correct import of the Sale model
 const router = express.Router();
 
 router.get('/', async (req, res) => {
