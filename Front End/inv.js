@@ -30,4 +30,3 @@ function updateStatus(quantitySpan, quantity) {
         statusCell.classList.remove('in-stock');
         statusCell.classList.add('out-of-stock');
     }
-}

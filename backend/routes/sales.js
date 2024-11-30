@@ -1,25 +1,16 @@
 const express = require('express');
-const Sale = require('../models/salesModels');
-
+const Sale = require('../models/orderModel');  // Correct import of the Sale model
 const router = express.Router();
-
-// POST /api/sales
-router.post('/', async (req, res) => {
-    try {
-        const sale = new Sale(req.body);
-        const savedSale = await sale.save();
-        res.status(201).json({ message: 'Sale recorded successfully!', data: savedSale });
-    } catch (error) {
-        res.status(500).json({ message: 'Error saving sale', error: error.message });
-    }
-});
 
 router.get('/', async (req, res) => {
     try {
-        const sales = await Sale.find().sort({ date: -1 }); // Sort by latest transaction
-        res.status(200).json(sales);
+        console.log("Received GET request for sales");
+        const sales = await Sale.find().sort({ date: -1 });
+        console.log("Fetched Sales Data:", sales);
+        res.status(200).json(sales);  // Send data as JSON
     } catch (err) {
         res.status(500).json({ error: err.message });
+        console.error("Error fetching sales data:", err.message);
     }
 });
 
