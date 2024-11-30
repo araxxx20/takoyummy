@@ -5,10 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS System</title>
     <link rel="stylesheet" href="stylepos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+<header class="navbar">
+    <div class="navbar-logo">
+        <img src="../Front End/assets/takoyaki.jpeg" alt="Takoyummy Logo">
+        <h1>Tako-Yummy Hub</h1>
+    </div>
+</header>
 <body>
     <div class="container">
         <aside class="sidebar">
+            <nav class="menu">
+                <a href="#pos.html" class="menu-item">
+                    <i class="bi bi-cart3"></i> POS
+                </a>
+                <a href="sales.html" class="menu-item">
+                    <i class="bi bi-graph-up-arrow"></i> Sales
+                </a>
+                <a href="inventory.html" class="menu-item">
+                    <i class="bi bi-box-seam"></i> Inventory
+                </a>
+            </nav>
+            <a href="finalstesting.html" class="logout">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
             <div class="logo">
                 <img src="https://scontent.fmnl13-3.fna.fbcdn.net/v/t39.30808-6/252959231_108543311633958_7288635393007285722_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHWCyAAgLKCvwHHVjPfY4S0OSG2GqL5XHU5IbYaovlcdapluE4bpIcDYl74E6_8goN5V87vvsLcauU93eShZfy7&_nc_ohc=1XtQPcwmD9UQ7kNvgHPsUT5&_nc_zt=23&_nc_ht=scontent.fmnl13-3.fna&_nc_gid=AKEg67qT4afWGXhbQ8BphGO&oh=00_AYDncpIdSErNDO1lVqaP0YQfoDKwUN9-FiGBnoO0HjE0LQ&oe=6747B0F1" alt="Takoyummy Logo">
             </div>
@@ -34,7 +55,6 @@
                         <span class="product-quantity">0</span>
                         <button class="add">+</button>
                     </div>
-                    <button class="add-btn">Add</button>
                 </div>
 
                 <div class="product-card">
@@ -48,7 +68,6 @@
                         <span class="product-quantity">0</span>
                         <button class="add">+</button>
                     </div>
-                    <button class="add-btn">Add</button>
                 </div>
 
                 <div class="product-card">
@@ -62,7 +81,6 @@
                         <span class="product-quantity">0</span>
                         <button class="add">+</button>
                     </div>
-                    <button class="add-btn">Add</button>
                 </div>
 
                 <div class="product-card">
@@ -76,7 +94,6 @@
                         <span class="product-quantity">0</span>
                         <button class="add">+</button>
                     </div>
-                    <button class="add-btn">Add</button>
                 </div>
 
                 <div class="product-card">
@@ -90,7 +107,6 @@
                         <span class="product-quantity">0</span>
                         <button class="add">+</button>
                     </div>
-                    <button class="add-btn">Add</button>
                 </div>
 
                 <div class="product-card">
@@ -104,7 +120,6 @@
                         <span class="product-quantity">0</span>
                         <button class="add">+</button>
                     </div>
-                    <button class="add-btn">Add</button>
                 </div>
 
 
@@ -112,12 +127,18 @@
         </main>
         <aside class="order-summary">
             <h2>Order Summary</h2>
-            <div class="order-item">
-                <div class="item-details">Total Price<br>Takoyaki</div>
-                <div class="board-quantity">0</div>
-                <div class="item-price">₱<span class="item-price2">0</span></div>
+            <!-- Dynamically injected order items -->
+            <div class="total">Total: ₱0.00</div>
+            <div class="payment-section">
+                <h3>Payment</h3>
+                <input class="input1" type="text" placeholder="Enter Payment">
+                <div class="keypad">
+                    <button id="calculateChange" class="calculateChange">Calculate Change</button>
+                </div>
+                <div class="change">Change: </div>
             </div>
             
+        </aside>        
         
 
         <div class="payment-section">

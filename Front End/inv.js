@@ -1,3 +1,4 @@
+
 function incrementQuantity(button) {
     const quantitySpan = button.closest('tr').querySelector('.quantity');
     let currentQuantity = parseInt(quantitySpan.textContent);
@@ -29,4 +30,3 @@ function updateStatus(quantitySpan, quantity) {
         statusCell.classList.remove('in-stock');
         statusCell.classList.add('out-of-stock');
     }
-}
