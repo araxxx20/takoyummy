@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://127.0.0.1:5501',  
+    origin: 'http://127.0.0.1:5502',  
     methods: ['GET', 'POST'],  
     allowedHeaders: ['Content-Type'],        
     credentials: true    
@@ -41,7 +41,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/ingredients', ingredientsRoutes)
-app.use('/api/v1/pos', posRoutes)
+app.use('/api/pos', posRoutes)
 app.use('/api/v1/sales', salesRoutes)
 
 // Start the server
