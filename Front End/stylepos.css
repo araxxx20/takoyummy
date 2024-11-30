@@ -4,6 +4,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll due to fixed positioning */
+
 }
 
 /* Navbar */
@@ -56,6 +58,8 @@
     padding: 20px;
     height: 100%;
     width: 200px;
+    top: 50px; /* Make space for navbar */
+
 }
 
 /* Menu */
@@ -104,6 +108,7 @@
 .logout:hover {
     background-color: white;
     color: #8B0000;
+    
 }
 
 .logout i {
@@ -144,7 +149,7 @@
 .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit:contain;
 }
 
 .quantity {
@@ -279,6 +284,8 @@
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+
 }
 
 .order-summary h2 {
@@ -300,5 +307,17 @@
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 10px;
+}
+/* Media Query */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static; /* Make sidebar stack in mobile */
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0; /* Full width for main content */
+    }
 }
 
