@@ -111,23 +111,17 @@
                         <button class="add">+</button>
                     </div>
                 </div>
-
-
             </div>
         </main>
         <aside class="order-summary">
             <h2>Order Summary</h2>
-            <!-- Dynamically injected order items -->
+            <div id="order-summary-list"></div>
             <div class="total">Total: ₱0.00</div>
             <div class="payment-section">
                 <h3>Payment</h3>
                 <input class="input1" type="text" placeholder="Enter Payment">
-                <div class="keypad">
-                    <button id="calculateChange" class="calculateChange">Calculate Change</button>
-                </div>
                 <div class="change">Change: </div>
             </div>
-
             <div class="submit">
                 <button id="submitOrder" class="submit-order">Submit Order</button>
             </div>
@@ -135,7 +129,6 @@
         </aside>        
         
     </div>
-
     <script src="pos.js"></script>
 </body>
 </html>

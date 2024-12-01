@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let filteredData = [];
     let currentPage = 1;
-    const rowsPerPage = 4;
+    const rowsPerPage = 6;
 
     const renderTable = (data, page = 1) => {
         salesTableBody.innerHTML = "";

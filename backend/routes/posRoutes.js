@@ -5,7 +5,7 @@ const Sale = require('../models/salesModels');
 
 router.post('/calculate', async (req, res) => {
     try {
-        const { items, payment } = req.body;
+        const { items, payment, } = req.body;
 
         const totalPrice = items.reduce((total, item) => total + item.price * item.quantity, 0);
         const change = payment - totalPrice;

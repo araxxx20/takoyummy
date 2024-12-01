@@ -8,12 +8,11 @@ productCards.forEach(card => {
     let addButton = card.querySelector('.add');
     let minusButton = card.querySelector('.minus');
     let priceElement = card.querySelector('.price');
-    let productName = card.querySelector('p').textContent;  // Get product name
-    let orderSummary = document.querySelector('.order-summary');
+    let productName = card.querySelector('p').textContent;
+    let orderSummary = document.querySelector('#order-summary-list');
 
     let num = 0;
 
-    // Event listeners for add and minus buttons
     addButton.addEventListener('click', () => {
         num += 1;
         quantityElement.innerHTML = num;
@@ -28,9 +27,7 @@ productCards.forEach(card => {
         }
     });
 
-    // Function to update the order summary
     function updateOrderSummary() {
-        // Check if product is already in order details
         let productIndex = orderDetails.findIndex(item => item.name === productName);
 
         if (productIndex > -1) {
@@ -42,7 +39,6 @@ productCards.forEach(card => {
         renderOrderSummary();
     }
 
-    // Function to render the order summary
     function renderOrderSummary() {
         let orderHTML = "";
         let newTotal = 0;
@@ -60,51 +56,94 @@ productCards.forEach(card => {
         });
 
         total = newTotal;
+        orderSummary.innerHTML = orderHTML;
 
-        // Update the order summary in the DOM
-        orderSummary.innerHTML = `
-            <h2>Order Summary</h2>
-            ${orderHTML}
-            <div class="total">Total: ₱${total.toFixed(2)}</div>
-            <div class="payment-section">
-                <h3>Payment</h3>
-                <input class="input1" type="text" placeholder="Enter Payment">
-                <div class="keypad">
-                    <button id="calculateChange" class="calculateChange">Calculate Change</button>
+        if (!document.querySelector('.payment-section')) {
+            const paymentSection = `
+                <div class="total">Total: ₱${total.toFixed(2)}</div>
+                <div class="payment-section">
+                    <h3>Payment</h3>
+                    <input class="input1" type="text" placeholder="Enter Payment">
+                    <div class="change">Change: </div>
                 </div>
-                <div class="change">Change: </div>
-            </div>
-        `;
-        
-        // Re-bind the event listener for the Calculate Change button after rendering the order summary
-        bindChangeButtonEvent();
+            `;
+            orderSummary.insertAdjacentHTML('beforeend', paymentSection);
+        } else {
+            document.querySelector('.total').innerHTML = `Total: ₱${total.toFixed(2)}`;
+        }
+
+        bindPaymentInputEvent();
+        bindSubmitOrderEvent();
     }
 
-    // Bind the event listener for calculating change
-    function bindChangeButtonEvent() {
-        let sukli = document.querySelector('.change');
-        let money = document.querySelector('.input1');
-        let changeButton = document.querySelector('.calculateChange');
+    function bindPaymentInputEvent() {
+        const paymentInput = document.querySelector('.input1');
+        const changeDisplay = document.querySelector('.change');
 
-        changeButton.addEventListener('click', () => {
-            let money2 = parseFloat(money.value);
-
-            console.log('Payment entered:', money2); // Check the payment value here
-
-            if (isNaN(money2) || money2 <= 0) {
-                sukli.innerHTML = "Change: Please enter a valid amount.";
+        paymentInput.addEventListener('input', () => {
+            const payment = parseFloat(paymentInput.value);
+            if (isNaN(payment) || payment <= 0) {
+                changeDisplay.innerHTML = "Change: Please enter a valid amount.";
                 return;
             }
 
-            let clientChange = money2 - total;
-            console.log('Change:', clientChange); // Check the calculated change
-
-            if (clientChange < 0) {
-                sukli.innerHTML = "Change: Insufficient funds";
+            const change = payment - total;
+            if (change < 0) {
+                changeDisplay.innerHTML = "Change: Insufficient funds";
             } else {
-                sukli.innerHTML = `Change: ₱${clientChange.toFixed(2)}`;
+                changeDisplay.innerHTML = `Change: ₱${change.toFixed(2)}`;
             }
         });
     }
+
+    function bindSubmitOrderEvent() {
+        document.getElementById('submitOrder').addEventListener('click', submitOrder);
+    }
 });
 
+// Submit Order Function
+async function submitOrder() {
+    try {
+        const paymentInput = parseFloat(document.querySelector('.input1').value);
+        console.log('Submitting order:', orderDetails);
+
+        const response = await fetch('/pos/submit-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                items: orderDetails.filter(item => item.quantity > 0),
+                payment: paymentInput,
+            }),
+        });
+
+        const result = await response.json();
+        console.log('Response:', result);
+
+        if (response.ok) {
+            alert('Order submitted successfully!');
+            showReceipt(result.order);
+        } else {
+            alert(result.error);
+        }
+    } catch (error) {
+        console.error('Error submitting order:', error);
+    }
+}
+
+function showReceipt(order) {
+    const modal = document.createElement('div');
+    modal.classList.add('receipt-modal');
+    modal.innerHTML = `
+        <h2>Receipt</h2>
+        <div>${order.items.map(item => `${item.name} x${item.quantity}`).join('<br>')}</div>
+        <p>Total: ₱${order.totalPrice.toFixed(2)}</p>
+        <p>Payment: ₱${order.payment.toFixed(2)}</p>
+        <p>Change: ₱${order.change.toFixed(2)}</p>
+        <button onclick="closeReceipt()">Close</button>
+    `;
+    document.body.appendChild(modal);
+}
+
+function closeReceipt() {
+    document.querySelector('.receipt-modal').remove();
+}
