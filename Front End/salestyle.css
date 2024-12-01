@@ -134,6 +134,18 @@ body {
     color: white;
 }
 
+
+#salestable th, #salestable td {
+    width: 20%; /* Adjust the percentage based on the number of columns and how you want them distributed */
+    white-space: nowrap; /* Prevent content from wrapping */
+}
+
+#salestable {
+    table-layout: fixed; /* Ensure the table's layout doesn't change dynamically */
+}
+
+
+
 /* Media Query */
 @media (max-width: 768px) {
     .sidebar {
